@@ -186,7 +186,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contactForm");
+  const form = document.getElementById("contact");
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault(); // supaya form tidak langsung reload/submit
