@@ -1,12 +1,3 @@
-// ========================================
-// PORTFOLIO WEBSITE INTERACTIVE FEATURES
-// Author: Azzam Azhim Muntazhar (Psr354)
-// ========================================
-
-/**
- * Animate progress bars when they come into view
- * Uses Intersection Observer for better performance
- */
 function animateProgressBars() {
     const progressBars = document.querySelectorAll('.progress-fill');
     
@@ -205,3 +196,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      subject: document.getElementById("subject").value,
+      message: document.getElementById("message").value,
+    };
+
+    try {
+      const res = await fetch("/api/message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Pesan berhasil dikirim, ditunggu balasannya ya!");
+        form.reset();
+      } else {
+        alert("Gagal mengirim pesan: " + (data.error || "Unknown error"));
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Terjadi kesalahan saat mengirim pesan. Coba lagi nanti.");
+    }
+  });
+});
+
