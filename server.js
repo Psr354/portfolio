@@ -24,9 +24,9 @@ const db = mysql.createConnection({
 // Test koneksi DB
 db.connect((err) => {
   if (err) {
-    console.error("❌ Database connection failed:", err);
+    console.error("Database connection failed:", err);
   } else {
-    console.log("✅ Connected to Database");
+    console.log("Connected to Database");
   }
 });
 
@@ -53,4 +53,4 @@ app.post("/api/message", (req, res) => {
 
 // Jalankan server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
