@@ -185,50 +185,41 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
+
   if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault(); // supaya form tidak langsung reload/submit
-      alert("ditunggu balasannya ya!");
-      // kalau mau kirim form beneran, bisa tambahkan logic fetch/ajax di sini
-      form.reset(); // reset form setelah alert
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value,
+      };
+
+      try {
+        const res = await fetch("/api/message", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          alert("Pesan berhasil dikirim, ditunggu balasannya ya!");
+          form.reset();
+        } else {
+          alert("Gagal mengirim pesan: " + (data.error || "Unknown error"));
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Terjadi kesalahan saat mengirim pesan. Coba lagi nanti.");
+      }
     });
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contactForm");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const formData = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      subject: document.getElementById("subject").value,
-      message: document.getElementById("message").value,
-    };
-
-    try {
-      const res = await fetch("/api/message", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        alert("Pesan berhasil dikirim, ditunggu balasannya ya!");
-        form.reset();
-      } else {
-        alert("Gagal mengirim pesan: " + (data.error || "Unknown error"));
-      }
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Terjadi kesalahan saat mengirim pesan. Coba lagi nanti.");
-    }
-  });
-});
 
