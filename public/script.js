@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contactForm");
+  const form = document.getElementById("contact");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
