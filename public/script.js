@@ -1,3 +1,6 @@
+
+
+// animasi progress bar skills
 function animateProgressBars() {
     const progressBars = document.querySelectorAll('.progress-fill');
     
@@ -7,33 +10,30 @@ function animateProgressBars() {
                 const progressBar = entry.target;
                 const percentage = progressBar.style.width;
                 
-                // Reset width to 0 for animation effect
+                
                 progressBar.style.width = '0%';
                 
-                // Animate to target width after a short delay
+               
                 setTimeout(() => {
                     progressBar.style.width = percentage;
                 }, 200);
                 
-                // Stop observing this element to prevent re-animation
+                
                 observer.unobserve(progressBar);
             }
         });
     }, { 
-        threshold: 0.5, // Trigger when 50% of element is visible
-        rootMargin: '0px 0px -100px 0px' // Start animation slightly earlier
+        threshold: 0.5, 
+        rootMargin: '0px 0px -100px 0px' 
     });
 
-    // Start observing all progress bars
+    
     progressBars.forEach(bar => {
         observer.observe(bar);
     });
 }
 
-/**
- * Add smooth scrolling to navigation links
- * Improves user experience when clicking menu items
- */
+// Smooth scrolling for navigation links
 function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -43,11 +43,11 @@ function initSmoothScrolling() {
             const target = document.querySelector(targetId);
             
             if (target) {
-                // Calculate offset for fixed navbar
+                
                 const navbarHeight = document.querySelector('.navbar').offsetHeight;
                 const targetPosition = target.offsetTop - navbarHeight - 20;
                 
-                // Smooth scroll to target
+                
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -57,9 +57,7 @@ function initSmoothScrolling() {
     });
 }
 
-/**
- * Add active state to navigation links based on scroll position
- */
+// Update active navigation link based on scroll position
 function initActiveNavigation() {
     const sections = document.querySelectorAll('section[id], div[id]');
     const navLinks = document.querySelectorAll('.navbar-links a[href^="#"]');
@@ -73,12 +71,12 @@ function initActiveNavigation() {
             const sectionId = section.getAttribute('id');
             
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                // Remove active class from all links
+    
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                 });
                 
-                // Add active class to current section link
+               
                 const activeLink = document.querySelector(`.navbar-links a[href="#${sectionId}"]`);
                 if (activeLink) {
                     activeLink.classList.add('active');
@@ -87,17 +85,14 @@ function initActiveNavigation() {
         });
     }
     
-    // Listen to scroll events
+    
     window.addEventListener('scroll', setActiveLink);
     
-    // Set initial active state
+    
     setActiveLink();
 }
 
-/**
- * Add hover effects to skill tags
- * Makes them more interactive
- */
+// Skill tag hover effects
 function initSkillTagInteractions() {
     const skillTags = document.querySelectorAll('.skill-tag');
     
@@ -112,11 +107,9 @@ function initSkillTagInteractions() {
     });
 }
 
-/**
- * Initialize all interactive features when DOM is loaded
- */
+// Initialize all features when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Portfolio website initialized by Psr354');
+    console.log('Portfolio website initialized by Psr354');
     
     // Initialize all features
     animateProgressBars();
@@ -127,13 +120,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add loading animation complete class
     document.body.classList.add('loaded');
     
-    console.log('✅ All interactive features loaded successfully');
+    console.log('All interactive features loaded successfully');
 });
 
-/**
- * Handle window resize events
- * Ensures responsive behavior
- */
+// Recalculate positions on window resize
 window.addEventListener('resize', function() {
     // Debounce resize events
     clearTimeout(window.resizeTimeout);
@@ -144,10 +134,7 @@ window.addEventListener('resize', function() {
     }, 250);
 });
 
-/**
- * Add keyboard navigation support
- * Improves accessibility
- */
+// Keyboard navigation support
 document.addEventListener('keydown', function(e) {
     // ESC key to scroll to top
     if (e.key === 'Escape') {
@@ -184,7 +171,7 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
-
+// notifikasi form kontak
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
 

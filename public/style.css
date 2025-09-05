@@ -139,7 +139,7 @@ body {
     transform: translateY(-2px) scale(1.03);
 }
 
-/* Updated About Me Section Styles */
+/* About Me Section Styles */
 .section .container {
     max-width: 800px;
     margin: 0 auto;
@@ -957,7 +957,7 @@ body {
 
 /* MOBILE RESPONSIVE STYLES */
 
-/* Large tablets and small desktops */
+/* tablet gede dan layar kecil */
 @media (max-width: 1024px) {
     .section .container {
         padding: 40px 20px;
@@ -985,7 +985,7 @@ body {
     }
 }
 
-/* Tablets */
+/* Bakal tablet */
 @media (max-width: 768px) {
     .navbar {
         padding: 0 15px;
@@ -1120,7 +1120,7 @@ body {
     }
 }
 
-/* Mobile phones */
+/* Bakal hp */
 @media (max-width: 480px) {
     .navbar {
         padding: 0 10px;
@@ -1467,7 +1467,7 @@ body {
     }
 }
 
-/* Extra small screens */
+/* bakal hp kecil */
 @media (max-width: 360px) {
     .navbar {
         height: 45px;
