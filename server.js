@@ -12,22 +12,16 @@ app.use(express.json());
 // Serve file statis dari folder public
 app.use(express.static(path.join(__dirname, "public")));
 
-// Koneksi Database (Railway env variables)
-const db = mysql.createConnection({
+// Koneksi Database (pakai pool biar stabil di Railway)
+const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
-});
-
-// Test koneksi DB
-db.connect((err) => {
-  if (err) {
-    console.error("Database connection failed:", err);
-  } else {
-    console.log("Connected to Database");
-  }
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
 // API untuk simpan pesan
@@ -41,7 +35,7 @@ app.post("/api/message", (req, res) => {
     "INSERT INTO messages (name, email, subject, message) VALUES (?, ?, ?, ?)";
   db.query(sql, [name, email, subject, message], (err) => {
     if (err) {
-      console.error("❌ Error saving message:", err);
+      console.error("Error saving message:", err);
       return res.status(500).json({ error: "Gagal menyimpan pesan" });
     }
     res.json({
